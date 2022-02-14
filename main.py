@@ -20,3 +20,4 @@ if __name__ == '__main__':
     st.sidebar.markdown("[Link to the pandore article](https://sites.google.com/aqsone.com/pandore/mise-en-production/comment-publier-un-mod%C3%A8le-en-5min?authuser=1)")
     st.sidebar.markdown("[Link to streamlit cheatsheet and documentation](https://docs.streamlit.io/library/cheatsheet)")
     st.sidebar.markdown("[Fill mask with DistillBert](https://huggingface.co/distilbert-base-uncased)")
+    st.sidebard.markdown("[Link to the Github repository](https://github.com/dauriacpaul/streamlit_deployment)")
