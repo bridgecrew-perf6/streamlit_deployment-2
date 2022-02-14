@@ -1,0 +1,13 @@
+distilbert-base-uncased/*
+.idea
+__pycache__
+.gitattributes
+/distilbert-base-uncased/.gitattributes
+/distilbert-base-uncased/config.json
+/favicon.png
+/distilbert-base-uncased/flax_model.msgpack
+/distilbert-base-uncased/pytorch_model.bin
+/.streamlit/secrets.toml
+/distilbert-base-uncased/tokenizer.json
+/distilbert-base-uncased/tokenizer_config.json
+/distilbert-base-uncased/vocab.txt
