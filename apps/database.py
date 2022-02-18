@@ -40,6 +40,32 @@ db = firestore.Client.from_service_account_info(st.secrets["gcp_service_account"
     """)
     st.write("You will at least need to create a firestore database and a collection for this database. You can do it by following the video below:")
     st.video("create_collection.webm")
+    st.subheader("Write an element in the database")
+    st.markdown("You can either store automatically the results or use a button with [st.button](https://docs.streamlit.io/library/api-reference/widgets/st.button)")
+    st.write('In the code bellow, I store the results in my collection "posts", the name of the document is the "sentence" given by the user and we pass a dictionnary containg the data.')
+    st.code("""    if st.button("Store result in the database"):
+db = firestore.Client.from_service_account_info(st.secrets["gcp_service_account"])
+data = {
+    u"table_results": result
+}
+db.collection("posts").document(sentence).set(data)""")
+
+    st.subheader("Get an element from the database")
+
+    st.write("To get data from the database, you can collect all the information stored")
+    st.write("Then propose to the user to choose one of the elements stored (the selectbox below)")
+    st.write("Finally get the data for the element choose by the user")
+    st.code("""
+        db = firestore.Client.from_service_account_info(st.secrets["gcp_service_account"])
+docs = db.collection(u'posts').stream()
+sentences = []
+for doc in docs:
+    sentences.append(doc.id)
+selected_sentence = st.selectbox("Select a stored sentence to look at the result", sentences)
+table = db.collection(u'posts').document(selected_sentence).get().to_dict()["table_results"]
+write(pd.DataFrame(table))
+    """)
+
     st.subheader("Explore stored results")
     db = firestore.Client.from_service_account_info(st.secrets["gcp_service_account"])
     docs = db.collection(u'posts').stream()
