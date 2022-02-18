@@ -5,8 +5,6 @@ from google.cloud import firestore
 
 
 def app():
-    db = firestore.Client.from_service_account_info(st.secrets["gcp_service_account"])
-
     st.write("For Airbus laptop, you need to replace the first line of the code by this line:")
     st.code("unmasker = pipeline('fill-mask', model='./distilbert-base-uncased')", language="python")
 
@@ -22,6 +20,7 @@ def app():
             st.warning("The sentence needs to contains [MASK]")
 
     if st.button("Store result in the database"):
+        db = firestore.Client.from_service_account_info(st.secrets["gcp_service_account"])
         data = {
             u"table_results": result
         }
