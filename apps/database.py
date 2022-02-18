@@ -43,7 +43,7 @@ db = firestore.Client.from_service_account_info(st.secrets["gcp_service_account"
     st.subheader("Write an element in the database")
     st.markdown("You can either store automatically the results or use a button with [st.button](https://docs.streamlit.io/library/api-reference/widgets/st.button)")
     st.write('In the code bellow, I store the results in my collection "posts", the name of the document is the "sentence" given by the user and we pass a dictionnary containg the data.')
-    st.code("""    if st.button("Store result in the database"):
+    st.code("""if st.button("Store result in the database"):
 db = firestore.Client.from_service_account_info(st.secrets["gcp_service_account"])
 data = {
     u"table_results": result
@@ -56,7 +56,7 @@ db.collection("posts").document(sentence).set(data)""")
     st.write("Then propose to the user to choose one of the elements stored (the selectbox below)")
     st.write("Finally get the data for the element choose by the user")
     st.code("""
-        db = firestore.Client.from_service_account_info(st.secrets["gcp_service_account"])
+db = firestore.Client.from_service_account_info(st.secrets["gcp_service_account"])
 docs = db.collection(u'posts').stream()
 sentences = []
 for doc in docs:
